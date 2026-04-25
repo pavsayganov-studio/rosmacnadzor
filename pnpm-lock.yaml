@@ -185,9 +185,6 @@ importers:
       eslint-plugin-react:
         specifier: ^7.37.5
         version: 7.37.5(eslint@9.39.3(jiti@2.6.1))
-      meta-json-schema:
-        specifier: ^1.19.23
-        version: 1.19.23
       monaco-yaml:
         specifier: ^5.4.1
         version: 5.4.1(monaco-editor@0.52.2)
@@ -3595,10 +3592,6 @@ packages:
 
   mdast-util-to-string@4.0.0:
     resolution: {integrity: sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg==}
-
-  meta-json-schema@1.19.23:
-    resolution: {integrity: sha512-WIVB7Vg+eeiih/IOlSlvOmZoH+v5lMPrItg0hMzEQ6/udghhhrspZ4T1cIHDhbtAfQnJwcSt5IGfP8LfzOoKAQ==}
-    engines: {node: '>=18', pnpm: '>=9'}
 
   micromark-core-commonmark@2.0.3:
     resolution: {integrity: sha512-RDBrHEMSxVFLg6xvnXmb1Ayr2WzLAWjeSATAoxwKYJV94TeNavgoIdA0a9ytzDSVzBy2YKFK+emCPOEibLeCrg==}
@@ -8525,8 +8518,6 @@ snapshots:
   mdast-util-to-string@4.0.0:
     dependencies:
       '@types/mdast': 4.0.4
-
-  meta-json-schema@1.19.23: {}
 
   micromark-core-commonmark@2.0.3:
     dependencies:
