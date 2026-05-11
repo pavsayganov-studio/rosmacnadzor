@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { useEffect } from 'react'
 import { getIconDataURL, getAppName } from '@renderer/utils/ipc'
 import { cropAndPadTransparent } from '@renderer/utils/image'
 import { platform } from '@renderer/utils/init'
@@ -127,4 +128,26 @@ const processAppNames = async (): Promise<void> => {
 
   await Promise.all(promises)
   if (appNameQueue.size > 0) scheduleAppNameProcess()
+}
+
+export function useProcessIcon(path: string, enabled: boolean): string {
+  const requestIcon = useIconsStore((s) => s.requestIcon)
+  const icon = useIconsStore((s) => s.icons[path] || '')
+
+  useEffect(() => {
+    if (enabled && path) requestIcon(path)
+  }, [path, enabled, requestIcon])
+
+  return enabled ? icon : ''
+}
+
+export function useProcessAppName(path: string, enabled: boolean): string {
+  const requestAppName = useIconsStore((s) => s.requestAppName)
+  const appName = useIconsStore((s) => s.appNames[path] || '')
+
+  useEffect(() => {
+    if (enabled && path) requestAppName(path)
+  }, [path, enabled, requestAppName])
+
+  return enabled ? appName : ''
 }
