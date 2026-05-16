@@ -38,7 +38,6 @@ const App: React.FC = () => {
     autoCheckUpdate
   } = appConfig || {}
   const { setTheme, systemTheme, resolvedTheme } = useTheme()
-  const mapBg = resolvedTheme === 'dark' ? mapDark : mapLight
   navigate = useNavigate()
   const location = useLocation()
   const isHome = location.pathname === '/' || location.pathname.includes('/home')
