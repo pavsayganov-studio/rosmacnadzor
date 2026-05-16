@@ -2,7 +2,6 @@
 <p align="center">
   <img src="./build/icon.png" alt="Clash" width="128" />
   <br>
-  <br>
   <a href="https://github.com/coolcoala/koala-clash/releases">
     <img src="https://img.shields.io/github/release/coolcoala/koala-clash/all.svg">
   </a>
