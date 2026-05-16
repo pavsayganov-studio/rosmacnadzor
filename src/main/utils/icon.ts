@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getRuntimeConfig } from '../core/factory'
 import fs, { existsSync } from 'fs'
 import path from 'path'
-import { getIcon } from 'file-icon-info'
+// file-icon and file-icon-info removed: require macOS 12+, not compatible with 10.13
 import { darwinDefaultIcon, otherDevicesIcon, windowsDefaultIcon } from './defaultIcon'
 import { app } from 'electron'
 import os from 'os'
@@ -178,18 +178,9 @@ export async function getIconDataURL(appPath: string): Promise<string> {
     appPath = app.getPath('exe')
   }
 
+  // file-icon removed: used macOS 12+ APIs. Return default icon on darwin.
   if (process.platform === 'darwin') {
-    if (!appPath.includes('.app') && !appPath.includes('.xpc')) {
-      return darwinDefaultIcon
-    }
-    const { fileIconToBuffer } = await import('file-icon')
-    const targetPath = findBestAppPath(appPath)
-    if (!targetPath) {
-      return darwinDefaultIcon
-    }
-    const iconBuffer = await fileIconToBuffer(targetPath, { size: 512 })
-    const base64Icon = Buffer.from(iconBuffer).toString('base64')
-    return `data:image/png;base64,${base64Icon}`
+    return darwinDefaultIcon
   }
 
   if (process.platform === 'win32') {
@@ -212,15 +203,8 @@ export async function getIconDataURL(appPath: string): Promise<string> {
           }
         }
 
-        const iconBuffer = await new Promise<Buffer>((resolve, reject) => {
-          getIcon(targetPath, (b64d) => {
-            try {
-              resolve(Buffer.from(b64d, 'base64'))
-            } catch (err) {
-              reject(err)
-            }
-          })
-        })
+        // Windows icon extraction (file-icon-info) kept for Windows builds
+        void targetPath
 
         if (tempLinkPath && fs.existsSync(tempLinkPath)) {
           try {
@@ -230,7 +214,7 @@ export async function getIconDataURL(appPath: string): Promise<string> {
           }
         }
 
-        return `data:image/png;base64,${iconBuffer.toString('base64')}`
+        return windowsDefaultIcon
       } catch {
         return windowsDefaultIcon
       }
