@@ -155,13 +155,6 @@ const App: React.FC = () => {
       className="relative w-full h-screen overflow-hidden"
       style={{ backgroundColor: resolvedTheme === 'dark' ? '#080F16' : '#C5D4F1' }}
     >
-      <img
-        src={mapBg}
-        alt=""
-        className={`pointer-events-none absolute inset-0 opacity-65 w-full h-full object-cover z-0 transition-[filter] duration-500 ${
-          isHome ? '' : 'blur-3xl'
-        }`}
-      />
       {showQuitConfirm && (
         <ConfirmModal
           title={t('modal.confirmQuit')}
